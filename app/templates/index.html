@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="ui header">🛒 Product Catalog</h2>
+
+<div class="ui three stackable cards">
+
+{% for p in products %}
+<div class="card">
+  <div class="content">
+    <div class="header">{{ p.name }}</div>
+    <div class="description">
+      {{ p.description }}
+    </div>
+  </div>
+
+  <div class="extra content">
+    <strong>${{ p.price }}</strong>
+
+    <form method="POST" action="/add_to_cart" style="margin-top:10px">
+        <input type="hidden" name="product_id" value="{{ p.id }}">
+        <button class="ui primary button" type="submit">
+            Add to Cart
+        </button>
+    </form>
+
+  </div>
+</div>
+{% endfor %}
+
+</div>
+
+{% endblock %}

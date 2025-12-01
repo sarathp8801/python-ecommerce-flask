@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="ui header">🛍 Your Cart</h2>
+
+{% if items %}
+
+<div class="ui relaxed divided list">
+  {% for i in items %}
+  <div class="item">
+    <div class="content">
+      <div class="header">{{ i.name }}</div>
+      <div>${{ i.price }}</div>
+
+      <form method="POST" action="/remove_from_cart" style="margin-top: 5px;">
+          <!-- loop.index0 gives 0,1,2,... for each item -->
+          <input type="hidden" name="index" value="{{ loop.index0 }}">
+          <button class="ui red mini button" type="submit">
+              Remove
+          </button>
+      </form>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<h3 class="ui header">Total: ${{ "%.2f"|format(total) }}</h3>
+
+<form method="POST" action="/checkout">
+    <button class="ui green button" type="submit">
+        Checkout
+    </button>
+</form>
+
+{% else %}
+<div class="ui message">
+    Your cart is empty.
+</div>
+{% endif %}
+
+<a href="/" class="ui button">⬅ Continue Shopping</a>
+
+{% endblock %}

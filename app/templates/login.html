@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="ui header">Login</h2>
+
+<form class="ui form" method="POST">
+
+<input name="email" placeholder="Email" required><br><br>
+<input name="password" type="password" placeholder="Password" required><br><br>
+
+<button class="ui green button">
+Login
+</button>
+
+</form>
+{% endblock %}
